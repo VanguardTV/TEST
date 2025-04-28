@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>네이버를 통해서 강의에 들어가세요</title>
+</head>
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userAgent = navigator.userAgent;
+            const isAndroid = /android/i.test(userAgent);
+            const isIOS = /iPad|iPhone|iPod/i.test(userAgent);
+            const isSamsung = /samsung/i.test(userAgent);
+            const originalUrl = "https://vip.cnms33.com/rk/room1";
+            const targetUrl = encodeURIComponent(originalUrl);
+
+   if (isAndroid) {
+                if (isSamsung) {
+
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = "naversearchapp://inappbrowser?url=" + targetUrl + "&target=new&version=5";
+                        document.body.appendChild(iframe);
+                    setTimeout(function () {
+                        if (document.visibilityState !== 'hidden') {
+                            window.location.href = "https://galaxystore.samsung.com/detail/com.nhn.android.search";
+                        }
+                    }, 2000);
+                } else {
+                    // 일반 Android 기기
+
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = "naversearchapp://inappbrowser?url=" + targetUrl + "&target=new&version=5";
+                        document.body.appendChild(iframe);
+                    
+                    setTimeout(function () {
+                        if (document.visibilityState !== 'hidden') {
+                            window.location.href = "https://play.google.com/store/apps/details?id=com.nhn.android.search";
+                        }
+                    }, 2000);
+                }
+            } else if (isIOS) {
+                // iOS 
+                        const iframe = document.createElement('iframe');
+                        iframe.style.display = 'none';
+                        iframe.src = "naversearchapp://inappbrowser?url=" + targetUrl + "&target=new&version=1";
+                        document.body.appendChild(iframe);
+
+                setTimeout(function () {
+                    if (document.visibilityState !== 'hidden') {
+                        // App Store
+                        window.location.href = "https://apps.apple.com/kr/app/id393499958";
+                    }
+                }, 2000);
+            } else {
+                window.location.href = originalUrl;
+            }
+        });
+    </script>
+</body>
+</html>
